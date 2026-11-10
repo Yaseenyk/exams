@@ -7,6 +7,7 @@ import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import FactTable from "@/components/FactTable";
 import JsonLd from "@/components/JsonLd";
 import AdSlot from "@/components/AdSlot";
+import ImageToolTip from "@/components/ImageToolTip";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.flatMap((e) => sectionsOf(e).map((s) => ({ exam: e.slug, section: s.slug })));
@@ -51,6 +52,7 @@ export default function SectionPage({ params }: { params: { exam: string; sectio
         These figures are for: <strong className="text-zinc-100">{e.cycle}</strong>.
       </p>
       <FactTable block={block} caption={s.title} />
+      {s.slug === "how-to-apply" && <ImageToolTip />}
       <AdSlot slot="section-mid" label="Advertisement" />
       {e.pending.length > 0 && (
         <p className="text-sm text-zinc-400">

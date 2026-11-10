@@ -9,6 +9,7 @@ import FactTable from "@/components/FactTable";
 import JsonLd from "@/components/JsonLd";
 import AdSlot from "@/components/AdSlot";
 import Timeline from "@/components/Timeline";
+import ImageToolTip from "@/components/ImageToolTip";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.filter((e) => e.portals).map((e) => ({ exam: e.slug }));
@@ -143,6 +144,7 @@ export default function CompleteGuide({ params }: { params: { exam: string } }) 
           <p>{p.lead}</p>
           {p.id === "dates" && <Timeline title="The dates in order" events={CALENDAR.filter((c) => c.exam.slug === e.slug)} />}
           {p.blocks.map((b) => (b.block ? <FactTable key={b.caption} block={b.block} caption={b.caption} /> : null))}
+          {p.id === "apply" && e.apply && <ImageToolTip />}
           {i === 2 && <AdSlot slot="guide-mid" label="Advertisement" />}
         </section>
       ))}
