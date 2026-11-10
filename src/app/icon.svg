@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="DefendIt">
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 4 L55 12 V30 C55 44.5 45.5 54.5 32 60 C18.5 54.5 9 44.5 9 30 V12 Z"
+        fill="#05070A" stroke="url(#edge)" stroke-width="3.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#22D3EE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="25,22 17,32 25,42"/>
+    <line x1="35" y1="20" x2="29" y2="44"/>
+    <polyline points="39,22 47,32 39,42"/>
+  </g>
+</svg>

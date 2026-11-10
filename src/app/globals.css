@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply text-zinc-100 antialiased;
+    overflow-x: hidden;
+    background-color: #05070a;
+  }
+  ::selection {
+    @apply bg-cyan text-ink;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .prose-guide h2 {
+    @apply mt-10 text-2xl font-semibold text-zinc-50;
+  }
+  .prose-guide h3 {
+    @apply mt-6 text-lg font-semibold text-zinc-100;
+  }
+  .prose-guide p,
+  .prose-guide li {
+    @apply leading-relaxed text-zinc-300;
+  }
+  .prose-guide p {
+    @apply mt-4;
+  }
+  .prose-guide ul {
+    @apply mt-4 list-disc space-y-2 pl-6;
+  }
+  .prose-guide a {
+    @apply text-cyan underline underline-offset-4;
+  }
+}
