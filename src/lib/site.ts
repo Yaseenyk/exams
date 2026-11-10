@@ -15,7 +15,7 @@ export const VERIFICATION = { google: "OG5PRiRPw3I5jB5p-G7nDzf_mlxdiZzrpLaFYCZ0p
 /** GA4 measurement ID and Clarity project ID. Create a GA4 web stream for exams.streamerosai.com and paste the G- ID here;
  *  empty means the tag is not emitted. */
 export const GA_ID = "G-WPXKT5VZKH";
-export const CLARITY_ID = "";
+export const CLARITY_ID = "zbeimh19os";
 
 /** AdSense publisher account (ownership meta tag only: it loads nothing). */
 export const ADSENSE_ACCOUNT = "ca-pub-9421223162668437";
