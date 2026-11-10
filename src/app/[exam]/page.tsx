@@ -42,6 +42,11 @@ export default function ExamPage({ params }: { params: { exam: string } }) {
       <p>
         Run by {e.conductedBy}. Facts below are for: <strong className="text-zinc-100">{e.cycle}</strong>.
       </p>
+      {e.portals && (
+        <p className="rounded-xl border border-cyan/40 bg-cyan/5 p-4">
+          <strong className="text-zinc-50">New to this exam?</strong> Read the <Link href={`/${e.slug}/complete-guide/`}>complete guide</Link>: who can apply, where to log in, how to apply, the syllabus, where to study from, exam day, and a checklist, all in one page.
+        </p>
+      )}
 
       <h2>What the official site shows now</h2>
       <p>{e.statusNow}</p>

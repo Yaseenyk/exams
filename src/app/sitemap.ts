@@ -15,6 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   for (const e of EXAMS) {
     out.push({ url: `${SITE_URL}/${e.slug}/`, lastModified: e.dates.checked, changeFrequency: "weekly", priority: 0.9 });
+    if (e.portals) {
+      const latestOfExam = [e.dates, e.eligibility, e.pattern, e.fees, e.apply, e.portals, e.syllabus, e.material, e.afterApply].filter((b) => !!b).map((b) => b!.checked).sort().pop()!;
+      out.push({ url: `${SITE_URL}/${e.slug}/complete-guide/`, lastModified: latestOfExam, changeFrequency: "weekly", priority: 0.95 });
+    }
     for (const s of sectionsOf(e)) {
       const b = e[s.key]!;
       out.push({ url: `${SITE_URL}/${e.slug}/${s.slug}/`, lastModified: b.checked, changeFrequency: "monthly", priority: 0.7 });

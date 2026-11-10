@@ -18,7 +18,7 @@ export default function FactTable({ block, caption }: { block: Block; caption: s
               <tr key={r.label} className="border-b border-zinc-800/70 align-top last:border-0">
                 <th scope="row" className="w-2/5 px-4 py-3 font-medium text-zinc-300">{r.label}</th>
                 <td className="px-4 py-3 text-zinc-100">
-                  {r.value}
+                  {r.href ? <a href={r.href} rel="noopener" className="text-cyan underline underline-offset-4">{r.value}</a> : r.value}
                   {r.note && <span className="mt-1 block text-xs leading-relaxed text-zinc-500">{r.note}</span>}
                 </td>
               </tr>

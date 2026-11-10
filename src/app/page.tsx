@@ -43,6 +43,7 @@ export default function Home() {
             </h3>
             <p className="!mt-2 text-sm">{e.statusNow}</p>
             <p className="!mt-3 text-sm text-zinc-500">Run by {e.conductedBy}</p>
+            {e.portals && <p className="!mt-2 text-sm"><Link href={`/${e.slug}/complete-guide/`}>Complete guide</Link></p>}
           </li>
         ))}
       </ul>
