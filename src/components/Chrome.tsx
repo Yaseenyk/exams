@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EXAMS } from "@/lib/exams";
+import NavLinks from "./NavLinks";
 import { PORTFOLIO_URL, SITE_NAME } from "@/lib/site";
 
 /** Header and footer around a page. Phone layout: brand on one row, the exams as a swipeable row of 44px pills below. */
@@ -8,19 +8,10 @@ export default function Chrome({ children }: { children: React.ReactNode }) {
     <div className="overflow-x-clip">
       <header className="border-b border-zinc-800/70">
         <nav className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-4 px-4 sm:px-6" aria-label="Main">
-          <Link href="/" className="inline-flex min-h-11 items-center py-1 font-semibold text-zinc-50">
+          <Link href="/" className="inline-flex min-h-11 items-center rounded-md py-1 font-semibold text-zinc-50 outline-none focus-visible:ring-2 focus-visible:ring-cyan">
             {SITE_NAME}
           </Link>
-          <div className="-mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:-mx-6 sm:w-[calc(100%+3rem)] sm:px-6 md:mx-0 md:w-auto md:flex-1 md:flex-wrap md:justify-end md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
-            {EXAMS.map((e) => (
-              <Link key={e.slug} href={`/${e.slug}/`} className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-zinc-800 bg-zinc-900/60 px-4 text-sm text-zinc-300 hover:border-cyan hover:text-zinc-50 md:border-transparent md:bg-transparent md:px-3">
-                {e.short}
-              </Link>
-            ))}
-            <Link href="/calendar/" className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full border border-zinc-800 bg-zinc-900/60 px-4 text-sm text-zinc-300 hover:border-cyan hover:text-zinc-50 md:border-transparent md:bg-transparent md:px-3">
-              Calendar
-            </Link>
-          </div>
+          <NavLinks />
         </nav>
       </header>
       <main className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-10">{children}</main>
