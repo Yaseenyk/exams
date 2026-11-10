@@ -12,11 +12,13 @@ export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.flatMap((e) => sectionsOf(e).map((s) => ({ exam: e.slug, section: s.slug })));
 
 const TITLES: Record<string, (n: string) => string> = {
+  "how-to-apply": (n) => `How to apply for ${n}: steps, photo and document sizes`,
   eligibility: (n) => `${n} eligibility: who can apply`,
   "exam-pattern": (n) => `${n} exam pattern: papers, marks and marking scheme`,
   fees: (n) => `${n} application fee by category`,
 };
 const INTROS: Record<string, string> = {
+  "how-to-apply": "The application steps and the exact photo, signature and document file sizes, read from the official bulletin. Check the sizes before you start.",
   eligibility: "Who may sit the exam, read from the exam body's own bulletin. Colleges and universities can add their own rules on top, so check the institute you want to join as well.",
   "exam-pattern": "How the paper is built: subjects, number of questions, marks and the marking scheme, read from the official bulletin.",
   fees: "What it costs to apply, by category, read from the official bulletin. Payment gateway charges and GST are added by the bank or gateway and are not part of these figures.",
@@ -29,7 +31,7 @@ export function generateMetadata({ params }: { params: { exam: string; section: 
   const title = TITLES[s.slug](e.name);
   const description = `${INTROS[s.slug]} Cycle: ${e.cycle}.`.slice(0, 300);
   const url = `${SITE_URL}/${e.slug}/${s.slug}/`;
-  return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { type: "website", url, title, description, siteName: "Exam Dates India", locale: "en_IN" } };
+  return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { type: "website", url, title, description, siteName: "Exam Dates India", locale: "en_IN", images: [{ url: `${SITE_URL}/og/${e.slug}.png`, width: 1200, height: 630, alt: e.name }] }, twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/og/${e.slug}.png`] } };
 }
 
 export default function SectionPage({ params }: { params: { exam: string; section: string } }) {

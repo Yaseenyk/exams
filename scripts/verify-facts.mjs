@@ -2,7 +2,7 @@
 // block's source is not an official domain. Also fails if two rows in a block have the same label.
 import { readFileSync } from "node:fs";
 
-const src = readFileSync("src/lib/exams.ts", "utf-8");
+const src = readFileSync("src/lib/exams.ts", "utf-8").replaceAll("\r\n", "\n"); // Windows checkouts use CRLF
 const OFFICIAL = /^https:\/\/(cdnbbsr\.s3waas\.gov\.in|([a-z0-9-]+\.)?nta\.nic\.in|([a-z0-9-]+\.)?nic\.in|([a-z0-9-]+\.)?upsc\.gov\.in|upsconline\.nic\.in|([a-z0-9-]+\.)?gov\.in)\//;
 
 const consts = Object.fromEntries([...src.matchAll(/const ([A-Z_0-9]+) = "([^"]+)";/g)].map((m) => [m[1], m[2]]));

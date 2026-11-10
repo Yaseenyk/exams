@@ -40,6 +40,7 @@ export interface Exam {
   eligibility?: Block;
   pattern?: Block;
   fees?: Block;
+  apply?: Block;
   /** Where to apply, if the source gives one. */
   applyAt?: { label: string; url: string };
 }
@@ -117,6 +118,27 @@ export const EXAMS: Exam[] = [
         { label: "Paper 2A and 2B", value: "Different structure (Mathematics and an aptitude test, plus drawing for B.Arch). Read section 2.4 of the bulletin for the exact split." },
       ],
     },
+    apply: {
+      sourceName: "JEE (Main) 2027 Information Bulletin, how to apply online",
+      source: JEE_BULLETIN,
+      checked: CHECKED,
+      rows: [
+        { label: "Where", value: "Online only, on jeemain.nta.nic.in", note: "Registration is enabled through the MeriPehchaan single sign-on service." },
+        { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password.", note: "The same Application Number is used for both sessions of JEE (Main) 2027." },
+        { label: "Step 2: fill the form", value: "Log in with the Application Number and password. Fill personal details, apply for the paper, choose exam cities, give your educational qualification details, and upload the images and documents." },
+        { label: "Step 3: pay the fee", value: "Pay by net banking, debit card, credit card or UPI and keep the proof of payment. Processing charges and GST are charged by the bank or gateway on top of the fee.", note: "After a successful payment you can print the Confirmation Page." },
+        { label: "If no Confirmation Page appears", value: "Check the payment status with the bank. If the payment failed, pay again before the deadline. If the bank says it succeeded, contact the NTA helpline so the page can be regenerated.", note: "NTA says duplicate payments that arise this way are refunded after fee reconciliation, through the same payment mode." },
+        { label: "Live photograph", value: "Taken while you fill the form, with your camera or webcam. Use a white background and good light, with 80% of the face visible (including ears, no mask).", note: "If your device has no webcam, you can scan a QR code and use a mobile device or tablet." },
+        { label: "Photograph file", value: "Recent passport-size photograph in colour, white background, 80% face (including ears, no mask). JPG/JPEG, 10 kB to 200 kB" },
+        { label: "Signature file", value: "JPG/JPEG, clearly legible, 10 kB to 100 kB" },
+        { label: "Class 10 certificate or marksheet", value: "PDF, clearly legible, 50 kB to 300 kB" },
+        { label: "Disability or UDID certificate (if it applies)", value: "PDF, clearly legible, 50 kB to 300 kB" },
+        { label: "Certificate of physical limitation to write (if it applies)", value: "PDF, clearly legible, 50 kB to 300 kB" },
+        { label: "Passport (foreign nationals including OCI)", value: "Scanned non-Indian passport, PDF, 50 kB to 300 kB" },
+        { label: "Use your own documents", value: "Upload your own photograph, signature and certificates. NTA treats uploading someone else's as an unfair means practice, and there is no correction after the correction window closes." },
+        { label: "Refund", value: "No request for a refund of a successfully paid application fee is entertained" },
+      ],
+    },
     fees: {
       sourceName: "JEE (Main) 2027 Information Bulletin, fee table (Paper 1 only, Session 1)",
       source: JEE_BULLETIN,
@@ -181,6 +203,27 @@ export const EXAMS: Exam[] = [
         { label: "Duration", value: "3 hours (180 minutes)" },
       ],
     },
+    apply: {
+      sourceName: "NEET (UG) 2026 Information Bulletin, how to apply online (the latest published)",
+      source: NEET_BULLETIN,
+      checked: CHECKED,
+      rows: [
+        { label: "Where", value: "Online only, on the NEET (UG) site neet.nta.nic.in" },
+        { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password and choose a security question and answer." },
+        { label: "Step 2: fill the form", value: "Log in with the Application Number and password. Fill personal details, choose the question paper medium and exam cities, give your educational qualification details, and upload the images and documents." },
+        { label: "Step 3: pay the fee", value: "Pay by debit card, credit card, UPI or net banking. Processing charges and GST are charged by the bank or gateway on top of the fee.", note: "After a successful payment you can print the Confirmation Page." },
+        { label: "If no Confirmation Page appears", value: "The transaction is treated as cancelled. Contact the bank or payment gateway at the helpline in the bulletin, and make another payment.", note: "NTA says it reconciles multiple payments after the final result and refunds them." },
+        { label: "Live photograph", value: "Taken while you fill the form" },
+        { label: "Photograph file", value: "Recent passport-size photograph taken after 1 January 2026, in colour or black and white, white background, 80% of the image your face (including ears, no mask). JPG/JPEG, 10 kB to 200 kB" },
+        { label: "Signature file", value: "JPG/JPEG, 10 kB to 100 kB" },
+        { label: "Left and right hand finger and thumb impressions", value: "JPG/JPEG, 10 kB to 200 kB. Unclear impressions are rejected." },
+        { label: "Class 10 certificate and marksheet", value: "Each as a PDF, 50 kB to 300 kB" },
+        { label: "Conversion certificate (if your Class 10 marks are in CGPA)", value: "PDF, 50 kB to 300 kB" },
+        { label: "Category certificate (if it applies)", value: "PDF, 50 kB to 300 kB" },
+        { label: "Photograph advice", value: "The bulletin advises keeping 6 to 8 colour passport-size photographs with a white background. The same photograph should be used for the form, the exam and counselling." },
+        { label: "Refund", value: "The fee once deposited is not refunded, and is not carried forward to a future exam" },
+      ],
+    },
     fees: {
       sourceName: "NEET (UG) 2026 Information Bulletin, fee table",
       source: NEET_BULLETIN,
@@ -243,6 +286,24 @@ export const EXAMS: Exam[] = [
         { label: "General Aptitude Test", value: "General knowledge, current affairs, general mental ability, numerical ability, quantitative reasoning, logical and analytical reasoning" },
       ],
     },
+    apply: {
+      sourceName: "CUET (UG) 2026 Information Bulletin, how to apply online (the latest published)",
+      source: CUET_BULLETIN,
+      checked: CHECKED,
+      rows: [
+        { label: "Where", value: "Online only, at cuet.nta.nic.in", note: "Read the Information Bulletin first to be sure of your eligibility." },
+        { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password and choose a security question and answer." },
+        { label: "Step 2: fill the form", value: "Log in with the Application Number and password. Fill personal details and educational qualification, choose universities and programmes, pick your test papers and exam cities, and upload the images and documents." },
+        { label: "Step 3: pay the fee", value: "Pay online by net banking, credit card, debit card or UPI. Processing charges and GST are charged by the bank or gateway on top of the fee." },
+        { label: "Step 4: Confirmation Page", value: "Download, save and print the Confirmation Page, which is available only after the fee is paid.", note: "The three steps can be done together or at separate times. Your application counts as successful only after the fee is received." },
+        { label: "Live photograph", value: "Taken while you fill the form" },
+        { label: "Photograph file", value: "Recent passport-size photograph in colour, white background, 80% face (including ears, no mask). JPG/JPEG, 10 kB to 200 kB" },
+        { label: "Signature file", value: "JPG/JPEG, clearly legible, 10 kB to 50 kB" },
+        { label: "Disability or UDID certificate (if it applies)", value: "PDF, clearly legible, 50 kB to 300 kB" },
+        { label: "Password", value: "Note your password: you need it for every later login" },
+        { label: "Refund", value: "No request for a refund of the fee once paid is entertained" },
+      ],
+    },
     fees: {
       sourceName: "CUET (UG) 2026 Information Bulletin, fee structure",
       source: CUET_BULLETIN,
@@ -288,11 +349,12 @@ export const EXAMS: Exam[] = [
 export const bySlug = (slug: string) => EXAMS.find((e) => e.slug === slug);
 
 export interface Section {
-  slug: "eligibility" | "exam-pattern" | "fees";
+  slug: "how-to-apply" | "eligibility" | "exam-pattern" | "fees";
   title: string;
-  key: "eligibility" | "pattern" | "fees";
+  key: "apply" | "eligibility" | "pattern" | "fees";
 }
 export const SECTIONS: Section[] = [
+  { slug: "how-to-apply", title: "How to apply", key: "apply" },
   { slug: "eligibility", title: "Eligibility", key: "eligibility" },
   { slug: "exam-pattern", title: "Exam pattern", key: "pattern" },
   { slug: "fees", title: "Application fee", key: "fees" },

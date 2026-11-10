@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EXAMS, SECTIONS, bySlug, sectionsOf } from "@/lib/exams";
+import { CALENDAR, EXAMS, SECTIONS, bySlug, sectionsOf } from "@/lib/exams";
 import { SITE_URL } from "@/lib/site";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import FactTable, { prettyDate } from "@/components/FactTable";
 import JsonLd from "@/components/JsonLd";
 import AdSlot from "@/components/AdSlot";
+import Timeline from "@/components/Timeline";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.map((e) => ({ exam: e.slug }));
@@ -23,7 +24,8 @@ export function generateMetadata({ params }: { params: { exam: string } }): Meta
     title: { absolute: titleOf(e.name) },
     description: descOf(e),
     alternates: { canonical: url },
-    openGraph: { type: "website", url, title: titleOf(e.name), description: descOf(e), siteName: "Exam Dates India", locale: "en_IN" },
+    openGraph: { type: "website", url, title: titleOf(e.name), description: descOf(e), siteName: "Exam Dates India", locale: "en_IN", images: [{ url: `${SITE_URL}/og/${e.slug}.png`, width: 1200, height: 630, alt: e.name }] },
+    twitter: { card: "summary_large_image", title: titleOf(e.name), description: descOf(e), images: [`${SITE_URL}/og/${e.slug}.png`] },
   };
 }
 
@@ -44,6 +46,8 @@ export default function ExamPage({ params }: { params: { exam: string } }) {
       <h2>What the official site shows now</h2>
       <p>{e.statusNow}</p>
       <p className="text-sm text-zinc-500">As of {prettyDate(e.dates.checked)}, on <a href={e.officialSite} rel="noopener">{e.officialName}</a>.</p>
+
+      <Timeline title="The dates in order" events={CALENDAR.filter((c) => c.exam.slug === e.slug)} />
 
       <FactTable block={e.dates} caption="Key dates" />
 
