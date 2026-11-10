@@ -1,0 +1,100 @@
+{
+ "checkedAt": "2026-11-10T10:07:13.090Z",
+ "targets": {
+  "jee-notices": {
+   "fails": 1,
+   "lastError": "HTTP 403"
+  },
+  "neet-notices": {
+   "fails": 1,
+   "lastError": "HTTP 403"
+  },
+  "cuet-notices": {
+   "items": [
+    [
+     "Information Bulletin",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/01/202601031633478370.pdf"
+    ],
+    [
+     "Information Bulletin",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2025/03/2025030146.pdf"
+    ],
+    [
+     "List of toppers of CUET (UG) &#8211; 2026",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/20260623268704934.pdf"
+    ],
+    [
+     "NTA Declares the Result/NTA Scores of Common University Entrance Test (UG) &#8211; 2026 &#8211; reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/20260623716111016.pdf"
+    ],
+    [
+     "Final Answer Keys for CUET(UG) &#8211; 2026",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/202606231857909583.pdf"
+    ],
+    [
+     "Display of Provisional Answer Keys and Question Papers with Recorded Responses for Answer Key Challenge of Common University Entrance Test [CUET (UG)]-2026 -reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/20260609478040431.pdf"
+    ],
+    [
+     "Successful Conduct of Common University Entrance Test (UG) – CUET (UG) 2026-reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/20260608323708178.pdf"
+    ],
+    [
+     "Release of admit cards for re-scheduled candidates for CUET (UG)- 2026 on 06-07 June 2026-reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/06/20260601958335840.pdf"
+    ],
+    [
+     "Re-scheduling of examination for the candidates affected due to technical glitch in CUET (UG) &#8211; 2026 on 30.05.2026 (Shift-I)-reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/05/20260530374646310.pdf"
+    ],
+    [
+     "Release of Admit Cards for Re-scheduled CUET (UG) 2026 Examination Candidates-reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/05/20260527559172511.pdf"
+    ],
+    [
+     "Rescheduling of Common University Entrance Test [CUET (UG)] 2026– Reg.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/05/202605241460504032.pdf"
+    ],
+    [
+     "Press Briefing Note on Commencement of the Common University Entrance Test (Undergraduate) — CUET (UG) 2026 — on 11 May 2026.",
+     "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/05/202605101692438124.pdf"
+    ]
+   ],
+   "hash": null,
+   "fails": 0,
+   "lastOk": "2026-11-10T10:07:14.019Z"
+  },
+  "upsc-home": {
+   "fails": 1,
+   "lastError": "HTTP 403"
+  },
+  "pdf:JEE_BULLETIN": {
+   "items": [],
+   "hash": "c2532df2a228836eeea057a60899f7eb44b9ef091d9927cdac5272126cfb9958",
+   "fails": 0,
+   "lastOk": "2026-11-10T10:07:15.448Z"
+  },
+  "pdf:JEE_NOTICE": {
+   "items": [],
+   "hash": "e5670a67f36b643918aa5012459968a8113581f669923242a87845c9b8d38ae5",
+   "fails": 0,
+   "lastOk": "2026-11-10T10:07:15.741Z"
+  },
+  "pdf:NEET_BULLETIN": {
+   "items": [],
+   "hash": "2b688f32bc58e5d5acdc4d61c8e6795a81419c40887a7e5c40b7d163174b4925",
+   "fails": 0,
+   "lastOk": "2026-11-10T10:07:17.881Z"
+  },
+  "pdf:CUET_BULLETIN": {
+   "items": [],
+   "hash": "089251af8851a575d97565162aeb777a623849fbde2495e52e40a53d6bfedbc7",
+   "fails": 0,
+   "lastOk": "2026-11-10T10:07:18.487Z"
+  },
+  "pdf:UPSC_CALENDAR": {
+   "fails": 1,
+   "lastError": "HTTP 403"
+  }
+ }
+}

@@ -1,0 +1,40 @@
+name: Weekly source reminder
+
+# Every Monday: one issue with the official pages to read by hand. The daily re-check cannot always read these pages from a server
+# (some government sites refuse automated readers), so this is the safety net. Close the issue when you have looked.
+on:
+  schedule:
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open this week's checklist
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          week=$(date -u +%G-W%V)
+          title="Weekly check of the official sources ($week)"
+          if gh issue list --state all --search "\"$title\" in:title" --json title -q '.[].title' | grep -qxF "$title"; then
+            echo "already open or done for $week"; exit 0
+          fi
+          gh label create weekly-check --color 0e8a16 --description "Read the official pages by hand" 2>/dev/null || true
+          gh issue create --title "$title" --label weekly-check --body "$(cat <<'EOF'
+          Read each official page for anything new since last week (an extension, a new notice, the next cycle's bulletin or calendar). If a date, fee or rule changed, update the matching block in `src/lib/exams.ts` from the official document, bump `checked`, build and publish.
+
+          - [ ] JEE Main: https://jeemain.nta.nic.in/ (public notices; Session 1 closes 22 Nov 2026, Session 2 dates are still to come)
+          - [ ] NEET (UG): https://neet.nta.nic.in/ (the 2027 information bulletin)
+          - [ ] CUET (UG): https://cuet.nta.nic.in/ (the 2027 information bulletin)
+          - [ ] UPSC: https://www.upsc.gov.in/examinations/exam-calendar (the 2027 notification is scheduled for 13 Jan 2027)
+          - [ ] Pages whose "last checked" date is more than 30 days old show a warning to visitors: refresh those first.
+
+          Anything you could not read, write down here and leave this open.
+          EOF
+          )"

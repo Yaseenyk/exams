@@ -1,0 +1,43 @@
+name: Re-check official sources
+
+# Daily: look at the official NTA and UPSC pages and every official PDF this site cites. A new notice, a new bulletin or a changed
+# document opens a GitHub issue labelled source-changed (the analytics dashboard's bell reports open ones). The site is never edited
+# by this job: a person reads the notice, updates src/lib/exams.ts, bumps `checked` and publishes.
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: recheck
+  cancel-in-progress: false
+
+jobs:
+  recheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Tests for the checker
+        run: node --test scripts/recheck.test.mjs
+      - name: Look at the official sources
+        run: node scripts/recheck.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Save what was seen
+        run: |
+          git config user.name "exams-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/source-state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "chore(data): official sources re-checked"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && exit 0; sleep 5; done
+          exit 1
