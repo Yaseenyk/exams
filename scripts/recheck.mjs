@@ -52,11 +52,18 @@ export function citedPdfs(src) {
 
 export const sha = (buf) => createHash("sha256").update(buf).digest("hex");
 
+/**
+ * Targets that answered HTTP 403 to this checker when it was set up (10 Nov 2026): the government sites refuse automated readers.
+ * They are still tried every day, in case that changes, but a miss does not open an issue: the weekly checklist issue
+ * (.github/workflows/weekly-reminder.yml) is how a person covers them.
+ */
+export const KNOWN_BLOCKED = new Set(["jee-notices", "neet-notices", "upsc-home", "pdf:UPSC_NOTIF", "pdf:UPSC_CALENDAR"]);
+
 /** Compare one target's fresh result with its stored state. Returns the new state and what to report. */
-export function evaluate(prev, fresh) {
+export function evaluate(prev, fresh, knownBlocked = false) {
   if (fresh.error) {
     const fails = (prev?.fails || 0) + 1;
-    return { state: { ...(prev || {}), fails, lastError: fresh.error }, report: fails === FAILS_BEFORE_ISSUE ? { kind: "unreachable", error: fresh.error, fails } : null };
+    return { state: { ...(prev || {}), fails, lastError: fresh.error }, report: fails === FAILS_BEFORE_ISSUE && !knownBlocked ? { kind: "unreachable", error: fresh.error, fails } : null };
   }
   const state = { items: fresh.items ?? prev?.items ?? [], hash: fresh.hash ?? prev?.hash ?? null, fails: 0, lastOk: new Date().toISOString() };
   if (!prev || prev.lastOk === undefined) return { state, report: null }; // first sight: baseline only
@@ -105,7 +112,7 @@ async function main() {
       if (t.kind === "links") fresh = { items: extractLinks(await get(t.url), t.url, t.filter) };
       else fresh = { hash: sha(await get(t.url, true)) };
     } catch (e) { fresh = { error: String(e.message || e) }; }
-    const { state: s, report } = evaluate(state.targets[t.id], fresh);
+    const { state: s, report } = evaluate(state.targets[t.id], fresh, KNOWN_BLOCKED.has(t.id));
     next.targets[t.id] = s;
     console.log(`recheck: ${t.id} ${fresh.error ? `ERROR ${fresh.error} (${s.fails} in a row)` : t.kind === "links" ? `${fresh.items.length} links` : "hashed"}${report ? ` -> ${report.kind}` : ""}`);
     if (report) reports.push({ t, report });

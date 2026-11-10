@@ -59,6 +59,19 @@ test("an unreachable page is reported once, after three misses in a row, and a s
   assert.equal(evaluate(again.state, { items: [] }).state.fails, 0);
 });
 
+test("a page known to refuse automated readers never opens an unreachable issue, and still recovers when it opens up", () => {
+  let st = evaluate(undefined, { items: [] }, true).state;
+  for (let i = 0; i < 5; i++) {
+    const r = evaluate(st, { error: "HTTP 403" }, true);
+    assert.equal(r.report, null);
+    st = r.state;
+  }
+  assert.equal(st.fails, 5);
+  const ok = evaluate(st, { items: [["Extension of last date", "https://x/b"]] }, true);
+  assert.equal(ok.state.fails, 0);
+  assert.equal(ok.report?.kind, "new-links"); // once readable it compares against the old baseline as usual
+});
+
 test("isImportant flags bulletins, extensions and reschedules", () => {
   assert.ok(isImportant("Information Bulletin for NEET(UG)-2027"));
   assert.ok(isImportant("Extension of last date for filling of Online Application Form"));
