@@ -10,7 +10,7 @@ export const SITE_DESCRIPTION =
   "Dates, eligibility, exam pattern and fees for India's big entrance exams (JEE Main, NEET UG, CUET UG, UPSC CSE), each read from the official document and shown with its source and the day it was checked.";
 
 /** Search-engine verification codes. Empty strings are omitted from the page. */
-export const VERIFICATION = { google: "", bing: "" };
+export const VERIFICATION = { google: "OG5PRiRPw3I5jB5p-G7nDzf_mlxdiZzrpLaFYCZ0p1M", bing: "" };
 
 /** GA4 measurement ID and Clarity project ID. Create a GA4 web stream for exams.streamerosai.com and paste the G- ID here;
  *  empty means the tag is not emitted. */
