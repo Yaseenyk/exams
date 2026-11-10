@@ -59,6 +59,8 @@ const CHECKED = "2026-11-10";
 // ---- JEE Main 2027 -----------------------------------------------------------------------------------------------
 const JEE_BULLETIN = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/202610241890224107.pdf";
 const JEE_NOTICE = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/20261024390682350.pdf";
+const JEE_NOTICE_FRESH = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/202610302102025182.pdf";
+const JEE_NOTICE_ADVISORY = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/202610281658843201.pdf";
 const JEE_SYLLABUS = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/20261024683680768.pdf";
 
 // ---- NEET (UG): the 2027 bulletin is not out, so these are the 2026 rules ---------------------------------------
@@ -82,7 +84,7 @@ export const EXAMS: Exam[] = [
     officialSite: "https://jeemain.nta.nic.in/",
     officialName: "jeemain.nta.nic.in",
     what: "JEE (Main) is the entrance test for undergraduate engineering (B.E./B.Tech) at NITs, IIITs and other centrally funded technical institutions, and for B.Arch and B.Planning. It is also the eligibility test for JEE (Advanced), which is held for the IITs.",
-    statusNow: "The application form for Session 1 is open. NTA's public notice is dated 24 October 2026.",
+    statusNow: "The application form for Session 1 is open. NTA's latest public notices are dated 24, 28 and 30 October 2026, and the last one allows a fresh application.",
     pending: ["Dates for displaying the answer keys and the results of both sessions (the bulletin says they will be shown on the NTA website)"],
     applyAt: { label: "Apply on the official JEE Main site", url: "https://jeemain.nta.nic.in/" },
     dates: {
@@ -143,6 +145,11 @@ export const EXAMS: Exam[] = [
       checked: CHECKED,
       rows: [
         { label: "Where", value: "Online only, on jeemain.nta.nic.in", note: "Registration is enabled through the MeriPehchaan single sign-on service." },
+        { label: "Fresh application allowed (notice of 30 October 2026)", value: "You may submit a fresh Session 1 form even if you already have an Application Number or paid the fee. Only the last form with the fee paid and the Confirmation Page generated counts. A new Application Number is made, and every detail, photograph, signature and document must be entered and uploaded again.", note: "The fee paid on the earlier form is neither refunded nor adjusted against the new one. A fresh form must be completed, with the fee, by the last date in the dates table.", href: JEE_NOTICE_FRESH },
+        { label: "To fix only a few details", value: "Use the correction window (27 to 29 November 2026) instead of a fresh form, as NTA advises" },
+        { label: "One attempt per session", value: "More than one Application Number does not let you appear more than once in a session. Appearing with more than one number is treated as unfair means. Merely holding more than one is not." },
+        { label: "Log in with your own credentials (notice of 28 October 2026)", value: "Use your own DigiLocker, JanParichay or e-Pramaan (MeriPehchaan) login, so identity and biometric details match at later stages. Do Re-KYC through DigiLocker before you fill the form, so your latest details are fetched.", href: JEE_NOTICE_ADVISORY },
+        { label: "Name and date of birth", value: "Must be the same as in your Class 10 certificate or marksheet" },
         { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password.", note: "The same Application Number is used for both sessions of JEE (Main) 2027." },
         { label: "Step 2: fill the form", value: "Log in with the Application Number and password. Fill personal details, apply for the paper, choose exam cities, give your educational qualification details, and upload the images and documents." },
         { label: "Step 3: pay the fee", value: "Pay by net banking, debit card, credit card or UPI and keep the proof of payment. Processing charges and GST are charged by the bank or gateway on top of the fee.", note: "After a successful payment you can print the Confirmation Page." },
@@ -215,8 +222,9 @@ export const EXAMS: Exam[] = [
       "Read the Information Bulletin once, fully (link in the study material section).",
       "Check you are eligible: your Class XII passing year, and the paper you need (Paper 1 for B.E./B.Tech, 2A for B.Arch, 2B for B.Planning).",
       "Get your files ready in the right sizes: photograph, signature and Class 10 certificate (sizes on the how-to-apply page).",
-      "Register on the official site and note your Application Number. Keep your password.",
-      "Fill the form, upload your own photograph and documents, and pay the fee before the last date in the dates table.",
+      "Do Re-KYC through DigiLocker first, and log in with your own DigiLocker, JanParichay or e-Pramaan credentials. Your name and date of birth must match your Class 10 certificate.",
+    "Register on the official site and note your Application Number. Keep your password.",
+      "Fill the form, upload your own photograph and documents, and pay the fee before the last date in the dates table. If you made a mistake, you may submit a fresh form before that date (only the last one with the fee paid counts) or wait for the correction window.",
       "Print the Confirmation Page once it is generated. If it does not appear, follow the steps on the how-to-apply page.",
       "Use the correction window if something is wrong. There is no correction after it closes.",
       "On the release date, download the admit card and print at least four copies. Fill in the self-declaration.",
