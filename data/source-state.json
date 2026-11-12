@@ -1,12 +1,12 @@
 {
- "checkedAt": "2026-11-11T09:04:48.904Z",
+ "checkedAt": "2026-11-12T09:34:13.674Z",
  "targets": {
   "jee-notices": {
-   "fails": 3,
+   "fails": 4,
    "lastError": "HTTP 403"
   },
   "neet-notices": {
-   "fails": 3,
+   "fails": 4,
    "lastError": "HTTP 403"
   },
   "cuet-notices": {
@@ -62,66 +62,66 @@
    ],
    "hash": null,
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:53.050Z"
+   "lastOk": "2026-11-12T09:34:16.958Z"
   },
   "upsc-home": {
-   "fails": 3,
+   "fails": 4,
    "lastError": "HTTP 403"
   },
   "pdf:JEE_BULLETIN": {
    "items": [],
    "hash": "c2532df2a228836eeea057a60899f7eb44b9ef091d9927cdac5272126cfb9958",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.418Z"
+   "lastOk": "2026-11-12T09:34:17.696Z"
   },
   "pdf:JEE_NOTICE": {
    "items": [],
    "hash": "e5670a67f36b643918aa5012459968a8113581f669923242a87845c9b8d38ae5",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.543Z"
+   "lastOk": "2026-11-12T09:34:17.752Z"
   },
   "pdf:JEE_NOTICE_FRESH": {
    "items": [],
    "hash": "6dc3b0379b42a405aa8f3bab63851ac718d392ec049732eb60088e52b4128a19",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.577Z"
+   "lastOk": "2026-11-12T09:34:17.793Z"
   },
   "pdf:JEE_NOTICE_ADVISORY": {
    "items": [],
    "hash": "d24733397846ca61d0ef44f7ab3eda31f09851b48e9a661d95953f37561b53c3",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.603Z"
+   "lastOk": "2026-11-12T09:34:17.806Z"
   },
   "pdf:JEE_SYLLABUS": {
    "items": [],
    "hash": "823ec5afaf30f19d4f0dc375159d8b843b944633e4edda58c9d910c145c32ccd",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.648Z"
+   "lastOk": "2026-11-12T09:34:17.828Z"
   },
   "pdf:NEET_SYLLABUS": {
    "items": [],
    "hash": "8b16375b6143a29743d3392915bbed0f886d3764f2f2d17932faa0b852a3a089",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.684Z"
+   "lastOk": "2026-11-12T09:34:17.875Z"
   },
   "pdf:NEET_BULLETIN": {
    "items": [],
    "hash": "2b688f32bc58e5d5acdc4d61c8e6795a81419c40887a7e5c40b7d163174b4925",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.842Z"
+   "lastOk": "2026-11-12T09:34:17.981Z"
   },
   "pdf:CUET_BULLETIN": {
    "items": [],
    "hash": "089251af8851a575d97565162aeb777a623849fbde2495e52e40a53d6bfedbc7",
    "fails": 0,
-   "lastOk": "2026-11-11T09:04:54.891Z"
+   "lastOk": "2026-11-12T09:34:18.052Z"
   },
   "pdf:UPSC_NOTIF": {
-   "fails": 2,
+   "fails": 3,
    "lastError": "HTTP 403"
   },
   "pdf:UPSC_CALENDAR": {
-   "fails": 3,
+   "fails": 4,
    "lastError": "HTTP 403"
   }
  }
