@@ -176,7 +176,7 @@ export default function CompleteGuide({ params }: { params: { exam: string } }) 
             <Link href={`/${e.slug}/${s.slug}/`}>{s.title.toLowerCase()}</Link>
           </span>
         ))}
-        . Back to the <Link href={`/${e.slug}/`}>{e.short} dates page</Link>. This site is independent and cannot take your application: always apply and pay on the official site.
+        . Back to the <Link href={`/${e.slug}/`}>{e.short} dates page</Link> or <Link href="/calendar/">all dates in one list</Link>. This site is independent and cannot take your application: always apply and pay on the official site.
       </p>
     </article>
   );

@@ -8,6 +8,9 @@ import FactTable from "@/components/FactTable";
 import JsonLd from "@/components/JsonLd";
 import AdSlot from "@/components/AdSlot";
 import ImageToolTip from "@/components/ImageToolTip";
+import FaqList from "@/components/Faq";
+import { faqsFor, shortAnswer } from "@/lib/faq";
+import { prettyDate } from "@/components/FactTable";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.flatMap((e) => sectionsOf(e).map((s) => ({ exam: e.slug, section: s.slug })));
@@ -47,6 +50,9 @@ export default function SectionPage({ params }: { params: { exam: string; sectio
       <JsonLd data={breadcrumbJsonLd([{ name: e.short, path: `/${e.slug}/` }, { name: s.title, path }])} />
       <JsonLd data={webPageJsonLd({ title, description: INTROS[s.slug], path, modified: block.checked })} />
       <h1 className="text-3xl font-bold leading-tight text-zinc-50 sm:text-4xl">{title}</h1>
+      <p className="rounded-xl border border-cyan/40 bg-cyan/5 p-4 text-lg">
+        <strong className="text-zinc-50">Short answer.</strong> {shortAnswer(e, s.key)} <span className="text-sm text-zinc-400">Read from the official source on {prettyDate(block.checked)}.</span>
+      </p>
       <p className="text-lg">{INTROS[s.slug]}</p>
       <p>
         These figures are for: <strong className="text-zinc-100">{e.cycle}</strong>.
@@ -59,12 +65,14 @@ export default function SectionPage({ params }: { params: { exam: string; sectio
           Not announced yet for the next cycle: {e.pending.join("; ")}. See the <Link href={`/${e.slug}/`}>{e.short} page</Link> for the latest dates.
         </p>
       )}
+      <FaqList items={faqsFor(e, s.key)} />
       <p className="mt-8 text-sm text-zinc-500">
         More on {e.short}: <Link href={`/${e.slug}/`}>dates</Link>
+        {e.portals && <>, <Link href={`/${e.slug}/complete-guide/`}>complete guide</Link></>}
         {sectionsOf(e).filter((x) => x.slug !== s.slug).map((x) => (
           <span key={x.slug}>, <Link href={`/${e.slug}/${x.slug}/`}>{x.title.toLowerCase()}</Link></span>
         ))}
-        . Official site: <a href={e.officialSite} rel="noopener">{e.officialName}</a>.
+        . <Link href="/calendar/">All dates in one list</Link>. Official site: <a href={e.officialSite} rel="noopener">{e.officialName}</a>.
       </p>
     </article>
   );

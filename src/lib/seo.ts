@@ -44,3 +44,15 @@ export function webPageJsonLd(o: { title: string; description: string; path: str
     author: { "@id": PERSON_ID },
   };
 }
+
+export function faqJsonLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}

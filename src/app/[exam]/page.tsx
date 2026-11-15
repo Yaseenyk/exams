@@ -8,6 +8,8 @@ import FactTable, { prettyDate } from "@/components/FactTable";
 import JsonLd from "@/components/JsonLd";
 import AdSlot from "@/components/AdSlot";
 import Timeline from "@/components/Timeline";
+import FaqList from "@/components/Faq";
+import { faqsFor, shortAnswer } from "@/lib/faq";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => EXAMS.map((e) => ({ exam: e.slug }));
@@ -38,6 +40,9 @@ export default function ExamPage({ params }: { params: { exam: string } }) {
       <JsonLd data={breadcrumbJsonLd([{ name: e.short, path }])} />
       <JsonLd data={webPageJsonLd({ title: titleOf(e.name), description: descOf(e), path, modified: e.dates.checked })} />
       <h1 className="text-3xl font-bold leading-tight text-zinc-50 sm:text-4xl">{titleOf(e.name)}</h1>
+      <p className="rounded-xl border border-cyan/40 bg-cyan/5 p-4 text-lg">
+        <strong className="text-zinc-50">Short answer.</strong> {shortAnswer(e, "dates")} <span className="text-sm text-zinc-400">Read from the official source on {prettyDate(e.dates.checked)}. {e.pending.length > 0 ? "Some items are not announced yet, see below." : ""}</span>
+      </p>
       <p className="text-lg">{e.what}</p>
       <p>
         Run by {e.conductedBy}. Facts below are for: <strong className="text-zinc-100">{e.cycle}</strong>.
@@ -89,6 +94,7 @@ export default function ExamPage({ params }: { params: { exam: string } }) {
           </ul>
         </>
       )}
+      <FaqList items={faqsFor(e, "dates")} />
       <p className="mt-10 text-sm text-zinc-500">
         Other exams: {EXAMS.filter((x) => x.slug !== e.slug).map((x, i) => (
           <span key={x.slug}>{i ? ", " : ""}<Link href={`/${x.slug}/`}>{x.short}</Link></span>
