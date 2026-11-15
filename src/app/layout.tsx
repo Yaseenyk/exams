@@ -40,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-IN" className={`${inter.variable} ${firaCode.variable}`}>
       <head>
+        <script defer src="https://pulse.yaseenyk.workers.dev/p.js" data-site="exams.streamerosai.com" />
         {GA_ID && <script dangerouslySetInnerHTML={{ __html: analyticsScript(GA_ID, CLARITY_ID ? clarityLoader(CLARITY_ID) : "") }} />}
         {AD_MODE === "live" && ADSENSE_CLIENT && <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossOrigin="anonymous" />}
       </head>
