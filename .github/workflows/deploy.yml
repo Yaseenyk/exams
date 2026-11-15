@@ -34,6 +34,9 @@ jobs:
         with:
           enablement: true
 
+      - name: Unit tests (llms.txt builder, IndexNow URL selection, source checker)
+        run: node --test scripts/recheck.test.mjs scripts/llms.test.mjs scripts/indexnow.test.mjs
+
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
@@ -74,3 +77,22 @@ jobs:
         uses: actions/deploy-pages@v5
         with:
           timeout: 420000
+
+  # Tell Bing and other IndexNow engines (not Google) which pages the pushed commit changed. Skipped on the daily scheduled
+  # rebuild, which has no new commit of its own. A failed ping never fails a deploy.
+  indexnow:
+    needs: deploy
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with the parent commit for the diff)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+      - name: Submit changed pages
+        run: node scripts/indexnow.mjs
+        continue-on-error: true
