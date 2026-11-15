@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { EXAMS, SECTIONS, bySlug, sectionsOf } from "@/lib/exams";
+import { EXAMS, SECTIONS, bySlug, sectionsOf, isThinSection } from "@/lib/exams";
 import { SITE_URL } from "@/lib/site";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import FactTable from "@/components/FactTable";
@@ -35,7 +35,7 @@ export function generateMetadata({ params }: { params: { exam: string; section: 
   const title = TITLES[s.slug](e.name);
   const description = `${INTROS[s.slug]} Cycle: ${e.cycle}.`.slice(0, 300);
   const url = `${SITE_URL}/${e.slug}/${s.slug}/`;
-  return { title: { absolute: title }, description, alternates: { canonical: url }, openGraph: { type: "website", url, title, description, siteName: "Exam Dates India", locale: "en_IN", images: [{ url: `${SITE_URL}/og/${e.slug}.png`, width: 1200, height: 630, alt: e.name }] }, twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/og/${e.slug}.png`] } };
+  return { title: { absolute: title }, description, alternates: { canonical: url }, ...(e[s.key] && isThinSection(e[s.key]!) ? { robots: { index: false, follow: true } } : {}), openGraph: { type: "website", url, title, description, siteName: "Exam Dates India", locale: "en_IN", images: [{ url: `${SITE_URL}/og/${e.slug}.png`, width: 1200, height: 630, alt: e.name }] }, twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/og/${e.slug}.png`] } };
 }
 
 export default function SectionPage({ params }: { params: { exam: string; section: string } }) {

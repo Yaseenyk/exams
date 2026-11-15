@@ -21,8 +21,11 @@ export default function Chrome({ children }: { children: React.ReactNode }) {
         </p>
         <p className="mt-3 leading-relaxed">
           © {new Date().getFullYear()} {SITE_NAME}. Written by <a href={`${PORTFOLIO_URL}/`} className="text-zinc-300 underline">Yaseen Khatib</a> ·{" "}
+          <Link href="/about/" className="inline-block py-2 underline">About</Link> ·{" "}
           <Link href="/how-we-check/" className="inline-block py-2 underline">How we check</Link> ·{" "}
-          <Link href="/privacy/" className="inline-block py-2 underline">Privacy</Link>
+          <Link href="/contact/" className="inline-block py-2 underline">Contact</Link> ·{" "}
+          <Link href="/privacy/" className="inline-block py-2 underline">Privacy</Link> ·{" "}
+          <Link href="/terms/" className="inline-block py-2 underline">Terms</Link>
         </p>
       </footer>
     </div>

@@ -698,6 +698,14 @@ export const SECTIONS: Section[] = [
   { slug: "fees", title: "Application fee", key: "fees" },
 ];
 
+/**
+ * A section page whose table holds under THIN_CHARS characters of values and notes (the application-fee pages, one NEET
+ * eligibility page) cannot stand alone: the same facts are on the exam page and the complete guide. Such pages stay
+ * reachable for visitors but carry noindex and are left out of the sitemap.
+ */
+export const THIN_CHARS = 500;
+export const isThinSection = (b: Block) => b.rows.reduce((n, r) => n + r.value.length + (r.note?.length ?? 0), 0) < THIN_CHARS;
+
 /** The sections an exam actually has facts for. UPSC has only dates until its notification is out. */
 export const sectionsOf = (e: Exam) => SECTIONS.filter((s) => e[s.key]);
 
