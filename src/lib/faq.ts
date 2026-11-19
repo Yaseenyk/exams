@@ -28,6 +28,7 @@ const SPECS: Record<Exam["slug"], Spec[]> = {
     A("Who is eligible for {s}?", "eligibility", ["Who can appear", "Who cannot"]),
     A("What is the {s} exam pattern?", "pattern", ["Papers", "Paper 1 mode", "Paper 1 duration", "Paper 1 subjects", "Total for Paper 1"]),
     A("What is the {s} marking scheme?", "pattern", ["Marking"], true),
+    A("What is the {s} pattern for B.Arch and B.Planning?", "pattern", ["Paper 2A (B.Arch)", "Paper 2B (B.Planning)"], true),
     A("In which languages can I take {s}?", "pattern", ["Medium of the question paper"], true),
     A("What is the {s} application fee?", "fees", "all", true),
     A("How do I apply for {s}?", "apply", ["Where", "Step 1: register", "Step 2: fill the form", "Step 3: pay the fee"]),
@@ -38,6 +39,8 @@ const SPECS: Record<Exam["slug"], Spec[]> = {
   "neet-ug": [
     A("What is the {s} exam date?", "dates", ["2026 exam date in the bulletin", "2027 dates"], true),
     A("What is the {s} age limit?", "eligibility", ["Minimum age", "Upper age limit"], true),
+    A("Which subjects do I need for {s}?", "eligibility", ["Subjects you must have studied", "Class 12 result awaited"], true),
+    A("What {s} score do I need for admission?", "eligibility", ["Minimum NEET score for admission"], true),
     A("What is the {s} exam pattern?", "pattern", ["Subjects", "Question type", "Total", "Duration"]),
     A("What is the {s} marking scheme?", "pattern", ["Marking"]),
     A("In which languages can I take {s}?", "pattern", ["Medium of the question paper"], true),

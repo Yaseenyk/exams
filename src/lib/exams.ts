@@ -55,6 +55,10 @@ export interface Exam {
 }
 
 const CHECKED = "2026-11-10";
+/** Blocks whose rows were read again on this day against the official PDF (19 Nov 2026 re-check). Blocks still on
+ * CHECKED could not be re-read that day (upsc.gov.in, jeemain.nta.nic.in and neet.nta.nic.in returned HTTP 403, and
+ * the NEET syllabus PDF is a scan with no text layer). */
+const RECHECKED = "2026-11-19";
 
 // ---- JEE Main 2027 -----------------------------------------------------------------------------------------------
 const JEE_BULLETIN = "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/202610241890224107.pdf";
@@ -90,7 +94,7 @@ export const EXAMS: Exam[] = [
     dates: {
       sourceName: "NTA public notice, 24 October 2026 (Session 1)",
       source: JEE_NOTICE,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "How many sessions", value: "Two: Session 1 in January 2027 and Session 2 in April 2027", note: "The Session 2 rows below are from the bulletin. The Session 1 rows are from the 24 October 2026 public notice." },
         { label: "Application form (Session 1)", value: "24 October 2026 to 22 November 2026, up to 11:50 PM" },
@@ -114,7 +118,7 @@ export const EXAMS: Exam[] = [
     eligibility: {
       sourceName: "JEE (Main) 2027 Information Bulletin, chapter 3",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Age limit for JEE Main", value: "None", note: "The institute you apply to may have its own age rule." },
         { label: "Who can appear", value: "Candidates who passed Class XII (or equivalent) in 2025 or 2026, or are appearing in 2027" },
@@ -126,7 +130,7 @@ export const EXAMS: Exam[] = [
     pattern: {
       sourceName: "JEE (Main) 2027 Information Bulletin, section 2.4",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Papers", value: "Paper 1 (B.E./B.Tech), Paper 2A (B.Arch), Paper 2B (B.Planning)" },
         { label: "Paper 1 mode", value: "Computer Based Test (CBT)" },
@@ -137,13 +141,16 @@ export const EXAMS: Exam[] = [
         { label: "Total for Paper 1", value: "75 questions, 300 marks" },
         { label: "Marking", value: "Correct answer +4. Incorrect answer −1. Unanswered or marked for review 0", note: "The bulletin says there is negative marking in both Section A and Section B." },
         { label: "Numerical answers", value: "Typed with the on-screen keypad and rounded to the nearest integer" },
-        { label: "Paper 2A and 2B", value: "Different structure (Mathematics and an aptitude test, plus drawing for B.Arch). Read section 2.4 of the bulletin for the exact split." },
+        { label: "Paper 2A (B.Arch)", value: "77 questions, 400 marks: Part I Mathematics, 20 multiple choice and 5 numerical (100 marks); Part II Aptitude Test, 50 questions (200 marks); Part III Drawing Test, 2 questions (100 marks)", note: "Mathematics and the Aptitude Test are on computer. The Drawing Test is pen and paper, on an A4 drawing sheet, and has no negative marking." },
+        { label: "Paper 2B (B.Planning)", value: "100 questions, 400 marks: Part I Mathematics, 20 multiple choice and 5 numerical (100 marks); Part II Aptitude Test, 50 questions (200 marks); Part III Planning-based questions, 25 (100 marks)", note: "All three parts are on computer. Taking 2A and 2B together makes a 3 hour 30 minute paper." },
+        { label: "How ties are broken (Paper 1)", value: "NTA score in Mathematics, then Physics, then Chemistry, then the candidate with fewer wrong answers for every right one (overall, then in Mathematics, Physics and Chemistry). If still tied, the same rank" },
+        { label: "Merit across sessions", value: "Raw marks in each subject are converted to NTA scores, and the merit list merges the NTA scores of all shifts of both sessions" },
       ],
     },
     apply: {
       sourceName: "JEE (Main) 2027 Information Bulletin, how to apply online",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Where", value: "Online only, on jeemain.nta.nic.in", note: "Registration is enabled through the MeriPehchaan single sign-on service." },
         { label: "Fresh application allowed (notice of 30 October 2026)", value: "You may submit a fresh Session 1 form even if you already have an Application Number or paid the fee. Only the last form with the fee paid and the Confirmation Page generated counts. A new Application Number is made, and every detail, photograph, signature and document must be entered and uploaded again.", note: "The fee paid on the earlier form is neither refunded nor adjusted against the new one. A fresh form must be completed, with the fee, by the last date in the dates table.", href: JEE_NOTICE_FRESH },
@@ -170,7 +177,7 @@ export const EXAMS: Exam[] = [
     portals: {
       sourceName: "JEE (Main) 2027 Information Bulletin and jeemain.nta.nic.in",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Official site", value: "jeemain.nta.nic.in, run by NTA", href: "https://jeemain.nta.nic.in/" },
         { label: "Register and apply", value: "Use the Online Application Form for JEE (Main) 2027 (Session 1) link on the official site. Register once, then log in to finish the form.", note: "Registration is enabled through the MeriPehchaan single sign-on service.", href: "https://jeemain.nta.nic.in/online-application-form-for-jee-main-2027-session-1/" },
@@ -183,13 +190,13 @@ export const EXAMS: Exam[] = [
     syllabus: {
       sourceName: "JEE (Main) 2027 syllabus, official NTA document",
       source: JEE_SYLLABUS,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Paper 1 (B.E./B.Tech): Mathematics, 14 units", value: "Sets, relations and functions · Complex numbers and quadratic equations · Matrices and determinants · Permutations and combinations · Binomial theorem and its simple applications · Sequence and series · Limit, continuity and differentiability · Integral calculus · Differential equations · Co-ordinate geometry · Three dimensional geometry · Vector algebra · Statistics and probability · Trigonometry" },
         { label: "Paper 1: Physics, 20 units", value: "Units and measurements · Kinematics · Laws of motion · Work, energy and power · Rotational motion · Gravitation · Properties of solids and liquids · Thermodynamics · Kinetic theory of gases · Oscillations and waves · Electrostatics · Current electricity · Magnetic effects of current and magnetism · Electromagnetic induction and alternating currents · Electromagnetic waves · Optics · Dual nature of matter and radiation · Atoms and nuclei · Electronic devices · Experimental skills" },
         { label: "Paper 1: Chemistry, 20 units", value: "Some basic concepts in chemistry · Atomic structure · Chemical bonding and molecular structure · Chemical thermodynamics · Solutions · Equilibrium · Redox reactions and electrochemistry · Chemical kinetics · Classification of elements and periodicity in properties · p-block elements · d- and f-block elements · Coordination compounds · Purification and characterisation of organic compounds · Some basic principles of organic chemistry · Hydrocarbons · Organic compounds containing halogens · Organic compounds containing oxygen · Organic compounds containing nitrogen · Biomolecules · Principles related to practical chemistry" },
         { label: "Paper 2A (B.Arch)", value: "Part I Mathematics (the same 14 units), Part II Aptitude Test, Part III Drawing Test" },
-        { label: "Paper 2B (B.Planning)", value: "See the official syllabus document for the Planning paper" },
+        { label: "Paper 2B (B.Planning)", value: "Part I Mathematics (the same 14 units), Part II Aptitude Test, Part III Planning: general awareness, social sciences and thinking skills" },
         { label: "The full topic list", value: "Every unit has a detailed list of topics in the official syllabus document", href: "https://cdnbbsr.s3waas.gov.in/s3f8e59f4b2fe7c5705bf878bbd494ccdf/uploads/2026/10/20261024683680768.pdf" },
       ],
     },
@@ -208,7 +215,7 @@ export const EXAMS: Exam[] = [
     afterApply: {
       sourceName: "JEE (Main) 2027 Information Bulletin: admit card, exam day, key challenge and result",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Exam city slip", value: "Session 1: 30 December 2026. Session 2: 12 March 2027." },
         { label: "Admit card", value: "Download it from jeemain.nta.nic.in and print at least four copies. NTA never posts it, and no duplicate is issued at the centre." },
@@ -236,17 +243,22 @@ export const EXAMS: Exam[] = [
       "Plan counselling: JoSAA and CSAB for admission, and JEE Advanced if you are aiming for the IITs.",
     ],
     fees: {
-      sourceName: "JEE (Main) 2027 Information Bulletin, fee table (Paper 1 only, Session 1)",
+      sourceName: "JEE (Main) 2027 Information Bulletin, fee table (payable for each session)",
       source: JEE_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
-        { label: "General, male (India)", value: "₹1,000", note: "Outside India: ₹5,000" },
-        { label: "General, female (India)", value: "₹800", note: "Outside India: ₹4,000" },
-        { label: "General-EWS / OBC (NCL), male (India)", value: "₹900", note: "Outside India: ₹4,500" },
-        { label: "General-EWS / OBC (NCL), female (India)", value: "₹800", note: "Outside India: ₹4,000" },
-        { label: "SC / ST / PwD / PwBD (India)", value: "₹500", note: "Outside India: ₹2,500" },
-        { label: "Third gender (India)", value: "₹500", note: "Outside India: ₹2,500" },
-        { label: "Late fee", value: "₹500 extra, on top of the category fee" },
+        { label: "One paper: General, male (India)", value: "₹1,000", note: "One paper means Paper 1 (B.E./B.Tech) or Paper 2A (B.Arch) or Paper 2B (B.Planning). Outside India: ₹5,000" },
+        { label: "One paper: General, female (India)", value: "₹800", note: "Outside India: ₹4,000" },
+        { label: "One paper: General-EWS / OBC (NCL), male (India)", value: "₹900", note: "Outside India: ₹4,500" },
+        { label: "One paper: General-EWS / OBC (NCL), female (India)", value: "₹800", note: "Outside India: ₹4,000" },
+        { label: "One paper: SC / ST / PwD / PwBD (India)", value: "₹500", note: "Outside India: ₹2,500" },
+        { label: "One paper: Third gender (India)", value: "₹500", note: "Outside India: ₹2,500" },
+        { label: "Two or three papers: General / General-EWS / OBC (NCL), male (India)", value: "₹2,000", note: "Two or three papers means Paper 1 with 2A, Paper 1 with 2B, all three, or 2A with 2B. Outside India: ₹10,000" },
+        { label: "Two or three papers: General / General-EWS / OBC (NCL), female (India)", value: "₹1,600", note: "Outside India: ₹8,000" },
+        { label: "Two or three papers: SC / ST / PwD / PwBD and Third gender (India)", value: "₹1,000", note: "Outside India: ₹5,000" },
+        { label: "Each session is paid separately", value: "The fee is for one session. To sit Session 2 as well, log in with the same Application Number and pay the Session 2 fee in its window" },
+        { label: "Late fee", value: "₹500 extra, on top of the category fee, the same for every category" },
+        { label: "Charges on top", value: "Processing charges and GST, charged by the bank or payment gateway" },
       ],
     },
   },
@@ -265,10 +277,12 @@ export const EXAMS: Exam[] = [
     dates: {
       sourceName: "NEET (UG) 2026 Information Bulletin (the latest published)",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "2026 exam date in the bulletin", value: "3 May 2026 (Sunday), 2:00 PM to 5:00 PM, single shift", note: "NTA's site later lists a re-examination on 21 June 2026. Use the official site for the 2027 dates when they appear." },
-        { label: "2026 last date to pay the fee", value: "8 March 2026" },
+        { label: "2026 application window", value: "8 February 2026 to 8 March 2026, up to 9:00 PM" },
+        { label: "2026 last date to pay the fee", value: "8 March 2026, up to 11:50 PM" },
+        { label: "2026 correction window", value: "10 to 12 March 2026" },
         { label: "Duration", value: "180 minutes (3 hours)" },
         { label: "Mode", value: "Pen and paper (OMR), in a single day and single shift" },
         { label: "2027 dates", value: "Not announced", note: "NTA's NEET (UG) site has no 2027 notice at the time of checking." },
@@ -277,17 +291,23 @@ export const EXAMS: Exam[] = [
     eligibility: {
       sourceName: "NEET (UG) 2026 Information Bulletin, eligibility",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Minimum age", value: "17 years completed on or before 31 December of the year you appear" },
         { label: "2026 cut-off birth date", value: "General (UR) and General-EWS candidates must be born on or before 31 December 2009", note: "The bulletin gives a separate line for SC/ST/OBC-NCL/PwBD. See the bulletin." },
         { label: "Upper age limit", value: "None", note: "Per the National Medical Commission's letter cited in the bulletin." },
+        { label: "Subjects you must have studied", value: "Physics, Chemistry and Biology / Biotechnology, with English, in Class 12 or an equivalent exam (with practical tests in these subjects)", note: "The bulletin lists seven accepted qualifying routes (codes 01 to 07), including intermediate, pre-medical and first-year degree exams. Students from foreign or international boards must meet code 07." },
+        { label: "Studied a subject after Class 12", value: "Allowed: the required subjects (Physics, Chemistry, Biology / Biotechnology with English) may be studied as additional subjects after passing Class 12, from a board recognised by the government", note: "You must show proof of having passed the qualifying exam with those subjects." },
+        { label: "Class 12 result awaited", value: "You may apply and sit the test, but you are not eligible for admission if you have not passed the qualifying exam by the first round of counselling" },
+        { label: "Minimum NEET score for admission", value: "50th percentile for General and General-EWS. 40th percentile for SC, ST and OBC", note: "For candidates with benchmark disabilities: 45th percentile (General, General-EWS) and 40th percentile (SC, ST, OBC-NCL). The Central Government may lower these in a year when too few candidates reach them." },
+        { label: "Studying medicine abroad", value: "Indian citizens and OCI cardholders who want to study undergraduate medical courses at a foreign medical or dental institute also have to qualify in NEET (UG)" },
+        { label: "NRI, OCI and foreign nationals", value: "Eligible for admission subject to State, institution and Government of India rules. NRI and OCI candidates upload a certificate from the Indian diplomatic mission; foreign nationals upload proof of nationality" },
       ],
     },
     pattern: {
       sourceName: "NEET (UG) 2026 Information Bulletin, pattern",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Subjects", value: "Physics, Chemistry, Biology (Botany and Zoology)" },
         { label: "Question type", value: "Multiple choice, four options, one correct answer" },
@@ -303,7 +323,7 @@ export const EXAMS: Exam[] = [
     apply: {
       sourceName: "NEET (UG) 2026 Information Bulletin, how to apply online (the latest published)",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Where", value: "Online only, on the NEET (UG) site neet.nta.nic.in" },
         { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password and choose a security question and answer." },
@@ -325,7 +345,7 @@ export const EXAMS: Exam[] = [
     portals: {
       sourceName: "NEET (UG) 2026 Information Bulletin and neet.nta.nic.in (the latest published)",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Official site", value: "neet.nta.nic.in, run by NTA", href: "https://neet.nta.nic.in/" },
         { label: "Register and apply", value: "Register on the official site, note the system-generated Application Number, create a password and a security question, then log in to finish the form.", href: "https://neet.nta.nic.in/" },
@@ -360,7 +380,7 @@ export const EXAMS: Exam[] = [
     afterApply: {
       sourceName: "NEET (UG) 2026 Information Bulletin: admit card and exam day (the latest published)",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Admit card", value: "Download it from neet.nta.nic.in. NTA does not post it, and no duplicate is issued at the centre." },
         { label: "Carry on the exam day", value: "A printed admit card with your passport-size photograph pasted on it; one passport-size photograph (same as uploaded) for the attendance sheet; one 4 x 6 inch colour photograph with a white background to paste on the proforma downloaded with the admit card; and one original, valid photo ID", note: "Accepted IDs in the bulletin include PAN card, driving licence, voter ID, passport, Aadhaar, DigiLocker and APAAR ID. Add your PwBD certificate if you claim that relaxation. Without these documents you are not allowed to sit the exam." },
@@ -382,7 +402,7 @@ export const EXAMS: Exam[] = [
     fees: {
       sourceName: "NEET (UG) 2026 Information Bulletin, fee table",
       source: NEET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "General (India)", value: "₹1,700", note: "Outside India: ₹9,500" },
         { label: "General-EWS / OBC-NCL (India)", value: "₹1,600" },
@@ -406,7 +426,7 @@ export const EXAMS: Exam[] = [
     dates: {
       sourceName: "CUET (UG) 2026 Information Bulletin (the latest published)",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "2026 application", value: "3 to 30 January 2026, up to 11:50 PM" },
         { label: "2026 last date to pay the fee", value: "31 January 2026, up to 11:50 PM" },
@@ -418,7 +438,7 @@ export const EXAMS: Exam[] = [
     eligibility: {
       sourceName: "CUET (UG) 2026 Information Bulletin, eligibility",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Age limit for CUET", value: "None", note: "The university you apply to may have its own age criteria." },
         { label: "Who can appear", value: "Candidates who passed Class 12 (or equivalent), or are appearing in 2026 (the year of that bulletin)" },
@@ -429,7 +449,7 @@ export const EXAMS: Exam[] = [
     pattern: {
       sourceName: "CUET (UG) 2026 Information Bulletin, information at a glance",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Mode", value: "Computer Based Test (CBT), in multiple shifts" },
         { label: "Total subjects", value: "37: 13 languages, 23 domain subjects and 1 General Aptitude Test" },
@@ -445,7 +465,7 @@ export const EXAMS: Exam[] = [
     apply: {
       sourceName: "CUET (UG) 2026 Information Bulletin, how to apply online (the latest published)",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Where", value: "Online only, at cuet.nta.nic.in", note: "Read the Information Bulletin first to be sure of your eligibility." },
         { label: "Step 1: register", value: "Register for the online form and note the system-generated Application Number. Create a password and choose a security question and answer." },
@@ -464,7 +484,7 @@ export const EXAMS: Exam[] = [
     portals: {
       sourceName: "CUET (UG) 2026 Information Bulletin and cuet.nta.nic.in (the latest published)",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Official site", value: "cuet.nta.nic.in, run by NTA", href: "https://cuet.nta.nic.in/" },
         { label: "Register and apply", value: "Register on the official site, note the Application Number, create a password and a security question, then log in to finish the form.", href: "https://cuet.nta.nic.in/" },
@@ -477,7 +497,7 @@ export const EXAMS: Exam[] = [
     syllabus: {
       sourceName: "CUET (UG) 2026 Information Bulletin, information at a glance and Appendix II",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "How the syllabus is organised", value: "37 test papers: 13 languages, 23 domain-specific subjects and 1 General Aptitude Test. You choose up to five." },
         { label: "Languages (13)", value: "Assamese · Bengali · English · Gujarati · Hindi · Kannada · Malayalam · Marathi · Punjabi · Odia · Tamil · Telugu · Urdu", note: "A language is tested by reading comprehension (factual, literary and narrative passages), literary aptitude and vocabulary." },
@@ -489,7 +509,7 @@ export const EXAMS: Exam[] = [
     material: {
       sourceName: "cuet.nta.nic.in and nta.ac.in (official links)",
       source: "https://cuet.nta.nic.in/",
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Syllabus", value: "The official CUET (UG) syllabus page, with a syllabus for each test paper", href: "https://cuet.nta.nic.in/cuetug-2026-syllabus/" },
         { label: "Information Bulletin", value: "The rules, pattern, marking and procedure. The latest published is for 2026.", href: "https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/01/202601031633478370.pdf" },
@@ -501,7 +521,7 @@ export const EXAMS: Exam[] = [
     afterApply: {
       sourceName: "CUET (UG) 2026 Information Bulletin: admit card, exam day, key challenge and score (the latest published)",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "Admit card", value: "Download it from cuet.nta.nic.in. NTA does not post it, and no duplicate is issued at the centre." },
         { label: "Carry on the exam day", value: "A clear A4 print of the admit card with the self-declaration filled in; one passport-size photograph (the same as uploaded) for the attendance sheet; and one original, valid, non-expired photo ID", note: "Accepted IDs in the bulletin: school ID, PAN, passport, Aadhaar (with photo), e-Aadhaar with photo, Class 12 board admit card with photo, bank passbook with photo. Add your PwD or PwBD certificate if you claim that relaxation. Without these documents you are not allowed to sit the exam." },
@@ -526,7 +546,7 @@ export const EXAMS: Exam[] = [
     fees: {
       sourceName: "CUET (UG) 2026 Information Bulletin, fee structure",
       source: CUET_BULLETIN,
-      checked: CHECKED,
+      checked: RECHECKED,
       rows: [
         { label: "General (UR), up to 3 subjects", value: "₹1,000", note: "Each additional subject: ₹400" },
         { label: "OBC (NCL) / EWS, up to 3 subjects", value: "₹900", note: "Each additional subject: ₹375" },
