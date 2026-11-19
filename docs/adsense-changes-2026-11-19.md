@@ -50,3 +50,19 @@ Sitemap: 26 URLs to 28. Fifth exam: not added. I would only add one with every f
 - JEE Main Session 1 closes 22 Nov 2026 (late form to 26 Nov). If NTA posts an extension, the dates block and calendar need an edit.
 - Still only four exams. The site's depth is good, but its breadth is small for a domain-level review.
 - Three fee pages stay noindex. Folding them into the exam overview with redirects is the cleaner long-term fix.
+
+## Privacy and crawl audit (19 Nov 2026)
+
+Method: home loaded in headless Chromium with every third-party request and cookie recorded, /about/, a JEE and a CUET
+page fetched raw, and `src/app/layout.tsx` read for scripts injected later.
+
+- Loaded on exams.streamerosai.com: Google Analytics 4 (googletagmanager.com, analytics.google.com,
+  stats.g.doubleclick.net; cookies `_ga`, `_ga_WPXKT5VZKH`), Microsoft Clarity (clarity.ms, c.bing.com; cookies `_clck`,
+  `_clsk`, plus Microsoft's `MUID`/`MR`/`SM`), Pulse (pulse.yaseenyk.workers.dev, no cookies). No forms, no AdSense, no
+  Google Fonts request.
+- Privacy page fixed: the Pulse text missed what it records (country, network name, clicks) and the daily-rotating
+  visitor code; Clarity's own and Microsoft's cookies were not named; and "turn on Do Not Track" was offered as a general
+  opt-out although only Pulse honours it (GA and Clarity do not). Corrected. AdSense "future use" paragraph kept.
+- Crawl: robots.txt allows crawling and names the sitemap. All 28 sitemap URLs return 200, none redirects, none is
+  noindex, every canonical matches.
+- Raw HTML: main text is in the static HTML (home about 510 words, /cuet-ug/complete-guide/ about 2,180).

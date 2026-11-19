@@ -15,19 +15,19 @@ export default function Privacy() {
   return (
     <article className="prose-guide">
       <h1 className="text-3xl font-bold leading-tight text-zinc-50 sm:text-4xl">{TITLE}</h1>
-      <p className="text-sm text-zinc-500">Last updated 16 November 2026. The site is run by Yaseen Khatib, Hyderabad, India.</p>
+      <p className="text-sm text-zinc-500">Last updated 19 November 2026. The site is run by Yaseen Khatib, Hyderabad, India.</p>
       <p>This site has no accounts and no forms. It does not ask for your name, number or email.</p>
       <h2>Visit statistics</h2>
       <p>
         We use three tools to count visits and see which pages are read, so we know what to keep up to date:
       </p>
       <ul>
-        <li><strong>Google Analytics</strong> counts visits, pages, clicks on links to official sites and the site or campaign that sent you. It sets cookies or similar identifiers.</li>
-        <li><strong>Microsoft Clarity</strong> may record anonymised sessions (clicks, scrolling and page layout) to show where a page is hard to use. It also sets cookies or similar identifiers.</li>
-        <li><strong>A small counter run by me</strong> (&ldquo;pulse&rdquo;, on my own server) records page views, the page you came from and link clicks, and whether the visit looks like a person or a bot. It sets no cookies and stores no IP address, name or anything you type. Records are deleted after 90 days. It switches itself off if your browser sends Do Not Track or Global Privacy Control.</li>
+        <li><strong>Google Analytics</strong> (googletagmanager.com) counts visits, pages, clicks on links to official sites and the site or campaign that sent you. It sets cookies (<code>_ga</code>, <code>_ga_*</code>).</li>
+        <li><strong>Microsoft Clarity</strong> (clarity.ms) records session replays and heatmaps (mouse movement, clicks, scrolling and page layout) to show where a page is hard to use. It sets its own cookies (<code>_clck</code>, <code>_clsk</code>) and Microsoft cookies on clarity.ms and bing.com (such as <code>MUID</code>). Microsoft explains its use in the <a href="https://privacy.microsoft.com/privacystatement">Microsoft privacy statement</a>.</li>
+        <li><strong>Pulse, a small counter run by me</strong> (a script from pulse.yaseenyk.workers.dev, a Cloudflare Worker) records the page (without the query string), the page you came from and campaign tags, country, device type, browser and system name, screen size, language, the name of your network provider, scroll depth, time on the page, page speed, and which links and buttons were clicked, so it can tell a person from a bot. It sets no cookies and stores no IP address or browser string. The IP address is used in memory only, to limit abuse and to make a visitor code that changes every day (a one-way hash with a random salt that is deleted the next day), so visits cannot be linked across days. Records are deleted after 90 days. It switches itself off if your browser sends Do Not Track or Global Privacy Control.</li>
       </ul>
       <p>
-        Google Analytics and Clarity load after you first interact with the page. We do not combine any of this with anything that identifies you. You can block the cookies in your browser settings, use Google&apos;s <a href="https://tools.google.com/dlpage/gaoptout">Analytics opt-out add-on</a>, or turn on Do Not Track.
+        Google Analytics and Clarity load after you first interact with the page. We do not combine any of this with anything that identifies you. You can block the cookies in your browser settings, use Google&apos;s <a href="https://tools.google.com/dlpage/gaoptout">Analytics opt-out add-on</a>, or block them with a browser extension. Do Not Track or Global Privacy Control turns off the Pulse counter.
       </p>
       <h2>Cookies</h2>
       <p>
