@@ -36,10 +36,17 @@ const analyticsScript = (id: string, clarity: string) =>
 const clarityLoader = (id: string) =>
   `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${id}");`;
 
+// Keeps React working when a visitor reads the page through Google Translate (see the <head> comment).
+const TRANSLATE_GUARD =
+  "(function(){if(typeof Node!=='function'||!Node.prototype)return;var r=Node.prototype.removeChild;Node.prototype.removeChild=function(c){if(c.parentNode!==this){return c;}return r.apply(this,arguments);};var i=Node.prototype.insertBefore;Node.prototype.insertBefore=function(n,ref){if(ref&&ref.parentNode!==this){return i.call(this,n,null);}return i.apply(this,arguments);};})();";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${inter.variable} ${firaCode.variable}`}>
       <head>
+        {/* Translate guard: Chrome's Google Translate swaps text nodes for <font> elements, and React then throws
+            removeChild/insertBefore errors. Runs first, before hydration. */}
+        <script dangerouslySetInnerHTML={{ __html: TRANSLATE_GUARD }} />
         <script defer src="https://pulse.yaseenyk.workers.dev/p.js" data-site="exams.streamerosai.com" />
         {GA_ID && <script dangerouslySetInnerHTML={{ __html: analyticsScript(GA_ID, CLARITY_ID ? clarityLoader(CLARITY_ID) : "") }} />}
         {AD_MODE === "live" && ADSENSE_CLIENT && <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`} crossOrigin="anonymous" />}

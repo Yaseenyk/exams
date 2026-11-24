@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/verify-facts.mjs && node scripts/generate-llms-full.mjs",
+    "build": "next build && node scripts/inline-css.mjs && node scripts/verify-facts.mjs && node scripts/generate-llms-full.mjs",
     "start": "next start",
     "lint": "next lint"
   },
